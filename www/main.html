@@ -1,0 +1,125 @@
+<link rel="stylesheet" type="text/css" href="./css/sencha-chatdawg.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="./css/sencha-touch.css" media="screen" />
+<script src="./js/sencha-touch-all.js"></script>
+
+<script>
+Ext.application({
+    name: 'Sencha',
+
+    launch: function () {
+        Ext.create("Ext.tab.Panel", {
+            fullscreen: true,
+            tabBarPosition: 'bottom',
+
+            items: [{
+                title: 'Public',
+                iconCls: 'globe',
+                cls: 'home',
+                
+                html: [
+                    '<img src="http://staging.sencha.com/img/sencha.png" />',
+                    '<h1>Welcome to Sencha Touch</h1>',
+                    "<p>You're creating the Getting Started app. This demonstrates how ",
+                    "to use tabs, lists and forms to create a simple app</p>",
+                    '<h2>Sencha Touch 2</h2>'].join("")
+
+            }, {
+                title: 'Family',
+                iconCls: 'home',
+                cls: 'home',
+
+                html: [
+                    '<img src="https://scontent-a-iad.xx.fbcdn.net/hphotos-ash3/t1.0-9/537937_567814423254024_1626717173_n.jpg" />',
+                    '<h1>Welcome to Sencha Touch</h1>',
+                    "<p>You're creating the Getting Started app. This demonstrates how ",
+                    "to use tabs, lists and forms to create a simple app</p>",
+                    '<h2>Sencha Touch 2</h2>'].join("")
+
+            }, {
+                title: 'Friends',
+                iconCls: 'team',
+                cls: 'home',
+                badgeText: '2',
+                html: [
+                    '<img src="https://scontent-b-iad.xx.fbcdn.net/hphotos-prn2/t1.0-9/1377998_601782639878985_1054965283_n.jpg" />',
+                    '<h1>Welcome to Sencha Touch</h1>',
+                    "<p>You're creating the Getting Started app. This demonstrates how ",
+                    "to use tabs, lists and forms to create a simple app</p>",
+                    '<h2>Sencha Touch 2</h2>'].join("")
+
+            }, {
+                title: 'Trust',
+                iconCls: 'team',
+		badgeText: '6',
+                cls: 'home',
+
+                html: [
+                    '<img src="https://scontent-a-iad.xx.fbcdn.net/hphotos-ash3/t1.0-9/6755_502852583083542_1142317277_n.jpg" />',
+                    '<h1>Welcome to Sencha Touch</h1>',
+                    "<p>You're creating the Getting Started app. This demonstrates how ",
+                    "to use tabs, lists and forms to create a simple app</p>",
+                    '<h2>Sencha Touch 2</h2>'].join("")
+
+            },
+		{
+                title: 'Intimate',
+                iconCls: 'Star',
+		badgeText: '1',
+                cls: 'home',
+
+                html: [
+                    '<img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash2/t1.0-9/314245_474841689217965_1421441181_n.jpg" />',
+                    '<h1>Welcome to Sencha Touch</h1>',
+                    "<p>You're creating the Getting Started app. This demonstrates how ",
+                    "to use tabs, lists and forms to create a simple app</p>",
+                    '<h2>Sencha Touch 2</h2>'].join("")
+
+            },
+		 {
+                xtype: 'nestedlist',
+                title: 'Private',
+                iconCls: 'user',
+		badgeText: '4',
+                displayField: 'title',
+
+                store: {
+                    type: 'tree',
+
+                    fields: [
+                        'title', 'link', 'author', 'contentSnippet', 'content', {
+                        name: 'leaf',
+                        defaultValue: true
+                    }],
+
+                    root: {
+                        leaf: false
+                    },
+
+                    proxy: {
+                        type: 'jsonp',
+                        url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://feeds.feedburner.com/lozenlin',
+                        reader: {
+                            type: 'json',
+                            rootProperty: 'responseData.feed.entries'
+                        }
+                    }
+                },
+
+                detailCard: {
+                    xtype: 'panel',
+                    scrollable: true,
+                    styleHtmlContent: true
+                },
+
+                listeners: {
+                    itemtap: function (nestedList, list, index, element, post) {
+                        this.getDetailCard().setHtml(post.get('content'));
+                    }
+                }
+		
+		
+            }]
+        });
+    }
+});
+</script>
